@@ -10,8 +10,6 @@ from levels import levelsMenu
 from instructions import instructionsOfGame
 from credits import credits
 
-from level1 import level1
-
 pygame.init()
 pygame.display.set_caption('Lil Parrot Odysea')
 screen = pygame.display.set_mode((WIDTH, HEIGHT),0,32)
@@ -33,11 +31,10 @@ def main_menu():
         button_instructions = pygame.Rect(WIDTH//2.5, 400, 250, 50)
         button_credits = pygame.Rect(WIDTH//2.5, 500, 250, 50)
         button_lenguage = pygame.Rect(20, 30, 60,50)
-
+        
         if button_game.collidepoint((mx, my)):
             if click:
                 levelsMenu(screen, mainClock)
-                #level1(screen,font_lifeBarText, mainClock)
         if button_instructions.collidepoint((mx, my)):
             if click:
                 instructionsOfGame(screen , font , mainClock)
@@ -66,7 +63,7 @@ def main_menu():
             if event.type == MOUSEBUTTONDOWN:
                 if event.button == 1:
                     click = True
- 
+
         pygame.display.update()
         mainClock.tick(60)
 main_menu()

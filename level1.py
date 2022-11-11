@@ -24,6 +24,7 @@ def level1(screen, font, mainClock):
             score = 0
             player = Player()
             all_sprites.add(player)
+            
             for i in range(4):
                 basura = Basura()
                 all_sprites.add(basura)

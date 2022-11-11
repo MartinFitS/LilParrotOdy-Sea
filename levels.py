@@ -4,6 +4,7 @@ from pygame.locals import *
 from utils import draw_text
 
 from level1 import level1
+from level2 import level2
 
 click = False
 
@@ -23,7 +24,10 @@ def levelsMenu(screen,  mainClock):
         if button_LevelOne.collidepoint((mx, my)):
             if click:
                 level1(screen, pygame.font.SysFont(None, 30),  mainClock)
-
+        if button_LevelTwo.collidepoint((mx,my)):
+            if click:
+                level2(screen , pygame.font.SysFont(None, 30), mainClock)
+                
         pygame.draw.rect(screen, (255, 0, 0), button_LevelOne)
         pygame.draw.rect(screen, (255, 0, 0), button_LevelTwo)
 
