@@ -8,12 +8,8 @@ class PlayerSecond(pygame.sprite.Sprite):
 
         self.sprites = []
 
-        self.sprites.append(pygame.image.load("./lilparrot/loro1.png"))
-        self.sprites.append(pygame.image.load("./lilparrot/loro2.png"))
-        self.sprites.append(pygame.image.load("./lilparrot/loro3.png"))
-        self.sprites.append(pygame.image.load("./lilparrot/loro4.png"))
-        self.sprites.append(pygame.image.load("./lilparrot/loro5.png"))
-        self.sprites.append(pygame.image.load("./lilparrot/loro6.png"))
+        self.sprites.append(pygame.image.load("./lilparrotSecondLevelSkin/loroBuzo1.png"))
+        self.sprites.append(pygame.image.load("./lilparrotSecondLevelSkin/loroBuzo2.png"))
 
         self.current_sprite = 0
         self.image = self.sprites[self.current_sprite]
@@ -31,7 +27,7 @@ class PlayerSecond(pygame.sprite.Sprite):
         self.speed_y = 0
 
         if self.moving_animation == True:
-            self.current_sprite += 0.5
+            self.current_sprite += 0.25
             if int(self.current_sprite) >= len(self.sprites):
                 self.current_sprite = 0
                 self.moving_animation = False

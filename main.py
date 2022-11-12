@@ -17,11 +17,13 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT),0,32)
 font = pygame.font.SysFont(None, 100)
 font_lifeBarText = pygame.font.SysFont(None, 30)
  
+
+music = pygame.mixer.Sound("./sounds/lilparrotSong.mp3")
 click = False
  
 def main_menu():
     while True:
- 
+        music.play()
         screen.fill((0,0,0))
         draw_text('Lil Parrot Ody-Sea', font, (255, 255, 255), screen, 350, 40)
  

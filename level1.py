@@ -3,12 +3,49 @@ from pygame.locals import *
 from Player import Player
 from Trash import Basura, Lata , Botella, Erizo
 from Kids import Ninos
+# from Background1 import B1
 from utils import draw_shield_bar , draw_text
 
+# def bgA():
+#     sprites = []
+#     animation = True
+
+#     sprites.append(pygame.image.load("./backgroundLevel1/playa1.png").convert())
+#     sprites.append(pygame.image.load("./backgroundLevel1/playa2.png").convert())
+#     sprites.append(pygame.image.load("./backgroundLevel1/playa3.png").convert())
+#     sprites.append(pygame.image.load("./backgroundLevel1/playa4.png").convert())
+#     sprites.append(pygame.image.load("./backgroundLevel1/playa5.png").convert())
+#     sprites.append(pygame.image.load("./backgroundLevel1/playa6.png").convert())
+#     current_sprite = 0
+#     image = sprites[current_sprite]
+
+#     if animation == True:
+#         current_sprite += 0.25
+#         if int(current_sprite) >= len(sprites):
+#                 current_sprite = 0
+#                 animation = False
+#     if animation == True:
+#         image = sprites[int(current_sprite)]
+
+#     return image
+
 def level1(screen, font, mainClock):
-    backgroundlv1 = pygame.image.load("./backgrounds/background_level1.jpeg").convert()
+
+    # backgroundlv1 = pygame.image.load("./backgroundLevel1/playa1.png").convert()
     running = True
     game_over  = True
+    bgS = []
+    animationBg = True
+
+    bgS.append(pygame.image.load("./backgroundLevel1/playa1.png").convert())
+    bgS.append(pygame.image.load("./backgroundLevel1/playa2.png").convert())
+    bgS.append(pygame.image.load("./backgroundLevel1/playa3.png").convert())
+    bgS.append(pygame.image.load("./backgroundLevel1/playa4.png").convert())
+    bgS.append(pygame.image.load("./backgroundLevel1/playa5.png").convert())
+    bgS.append(pygame.image.load("./backgroundLevel1/playa6.png").convert())
+
+    currentBg = 0
+    image = bgS[currentBg]
 
     while running: 
         if game_over:
@@ -96,8 +133,14 @@ def level1(screen, font, mainClock):
             if score == 10:
                 running = False
            
+        if animationBg == True:
+            currentBg += 0.10
+        if int(currentBg) >= len(bgS):
+                currentBg = 0
+        if animationBg == True:
+                image = bgS[int(currentBg)]
 
-        screen.blit(backgroundlv1, [0,0])
+        screen.blit(image, [0,0])
         all_sprites.draw(screen)
 
         draw_text('Puntaje: ', font, (255, 255, 255), screen, 1280//2-50, 10)
