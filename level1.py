@@ -3,35 +3,10 @@ from pygame.locals import *
 from Player import Player
 from Trash import Basura, Lata , Botella, Erizo
 from Kids import Ninos
-# from Background1 import B1
-from utils import draw_shield_bar , draw_text
+from utils import draw_shield_bar , draw_text, youWinLvl1Easy,youWinLvl1Hard
 
-# def bgA():
-#     sprites = []
-#     animation = True
-
-#     sprites.append(pygame.image.load("./backgroundLevel1/playa1.png").convert())
-#     sprites.append(pygame.image.load("./backgroundLevel1/playa2.png").convert())
-#     sprites.append(pygame.image.load("./backgroundLevel1/playa3.png").convert())
-#     sprites.append(pygame.image.load("./backgroundLevel1/playa4.png").convert())
-#     sprites.append(pygame.image.load("./backgroundLevel1/playa5.png").convert())
-#     sprites.append(pygame.image.load("./backgroundLevel1/playa6.png").convert())
-#     current_sprite = 0
-#     image = sprites[current_sprite]
-
-#     if animation == True:
-#         current_sprite += 0.25
-#         if int(current_sprite) >= len(sprites):
-#                 current_sprite = 0
-#                 animation = False
-#     if animation == True:
-#         image = sprites[int(current_sprite)]
-
-#     return image
 
 def level1(screen, font, mainClock):
-
-    # backgroundlv1 = pygame.image.load("./backgroundLevel1/playa1.png").convert()
     running = True
     game_over  = True
     bgS = []
@@ -66,7 +41,7 @@ def level1(screen, font, mainClock):
                 basura = Basura()
                 all_sprites.add(basura)
                 basura_list.add(basura)
-            for i in range(5):
+            for i in range(10):
                 erizo = Erizo()
                 all_sprites.add(erizo)
                 erizo_list.add(erizo)
@@ -98,8 +73,7 @@ def level1(screen, font, mainClock):
             ninos = Ninos()
             all_sprites.add(ninos)
             ninos_list.add(ninos)
-            if player.lifes <= 0:
-                pass
+            
 
         hitsPe = pygame.sprite.spritecollide(player,erizo_list, True)
 
@@ -108,30 +82,22 @@ def level1(screen, font, mainClock):
             erizo = Erizo()
             all_sprites.add(erizo)
             erizo_list.add(erizo)
-            if player.lifes <= 0:
-                pass
+            
             
         hitsPb = pygame.sprite.spritecollide(player, basura_list, True)
 
         for hit in hitsPb:
             score += 1  
-            if score == 10:
-                running = False
-
+        
         hitsPL = pygame.sprite.spritecollide(player, lata_list, True)
 
         for hit in hitsPL:
             score += 1  
-            if score == 10:
-                you_win = True
-                running = False
-
+        
         hitsPBA = pygame.sprite.spritecollide(player, botella_list, True)
 
         for hit in hitsPBA:
             score += 1  
-            if score == 10:
-                running = False
            
         if animationBg == True:
             currentBg += 0.10
@@ -140,6 +106,40 @@ def level1(screen, font, mainClock):
         if animationBg == True:
                 image = bgS[int(currentBg)]
 
+        if player.lifes <= 0:
+            youWinLvl1Easy(screen, font, mainClock)
+            game_over = True
+
+        if score == 10:
+            youWinLvl1Easy(screen, font, mainClock)
+            player.lifes = 100
+            score = 10
+            
+            for i in range(9):
+                basura = Basura()
+                all_sprites.add(basura)
+                basura_list.add(basura)
+            for i in range(8):
+                erizo = Erizo()
+                all_sprites.add(erizo)
+                erizo_list.add(erizo)
+            for i in range(8):
+                lata = Lata()
+                all_sprites.add(lata)
+                lata_list.add(lata)
+            for i in range(3):
+                botella = Botella()
+                all_sprites.add(botella)
+                lata_list.add(botella)
+            for i in range(5):
+                ninos = Ninos()
+                all_sprites.add(ninos)
+                ninos_list.add(ninos)
+            
+        if score == 25:
+            youWinLvl1Hard(screen, font, mainClock)
+            
+            
         screen.blit(image, [0,0])
         all_sprites.draw(screen)
 

@@ -29,5 +29,5 @@ class B1(pygame.sprite.Sprite):
         if self.animation == True:
             self.image = self.sprites[int(self.current_sprite)]
         
-        print(self.image)
+  
         return self.image

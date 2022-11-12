@@ -36,4 +36,4 @@ class Erizo(pygame.sprite.Sprite):
         self.image.set_colorkey((0,0,0))
         self.rect = self.image.get_rect()
         self.rect.x = random.randrange(1280 - self.rect.width)
-        self.rect.y = random.randrange(300, 400)
+        self.rect.y = random.randrange(200, 600)

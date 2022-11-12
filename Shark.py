@@ -36,7 +36,7 @@ class Shark(pygame.sprite.Sprite):
         self.rect.x -= self.speedx
 
         self.moving()
-        print(self.image)
+
         if self.rect.top > 1280 + 10 or self.rect.left < -25 or self.rect.right > 1280 +25:
             self.rect.x = random.randrange(900,1200)
             self.rect.y = random.randrange(50 , 650)

@@ -39,7 +39,6 @@ class PlayerSecond(pygame.sprite.Sprite):
 
         if keystate[pygame.K_UP]:
             self.speed_y = -3
-            print(self.current_sprite)
             self.moving()
 
         if keystate[pygame.K_DOWN]:
