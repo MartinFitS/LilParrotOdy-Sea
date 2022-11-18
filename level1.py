@@ -1,7 +1,7 @@
 import pygame,sys
 from pygame.locals import *
 from Player import Player
-from Trash import Basura, Lata , Botella, Erizo
+from Trash import Basura, Lata, Heart , Botella, Erizo
 from Kids import Ninos
 from utils import draw_shield_bar , draw_text, youWinLvl1Easy,youWinLvl1Hard
 
@@ -33,10 +33,15 @@ def level1(screen, font, mainClock):
             lata_list = pygame.sprite.Group()
             erizo_list = pygame.sprite.Group()
             botella_list = pygame.sprite.Group()
+            heart_list = pygame.sprite.Group()
             score = 0
             player = Player()
             all_sprites.add(player)
             
+            for i in range(1):
+                heart = Heart()
+                all_sprites.add(heart)
+                heart_list.add(heart)
             for i in range(4):
                 basura = Basura()
                 all_sprites.add(basura)

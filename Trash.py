@@ -37,3 +37,14 @@ class Erizo(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = random.randrange(1280 - self.rect.width)
         self.rect.y = random.randrange(200, 600)
+
+#Clase Heart
+
+class Heart(pygame.sprite.Sprite):
+    def __init__(self):
+        super().__init__()
+        self.image = pygame.image.load("./utilsStatics/cora.png").convert()
+        self.image.set_colorkey((0,0,0))
+        self.rect = self.image.get_rect()
+        self.rect.x = random.randrange(1289 - self.rect.width)
+        self.rect.y = random.randrange(200, 600)

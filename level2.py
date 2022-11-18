@@ -2,11 +2,41 @@ import pygame,sys;
 from PlayerSecond import PlayerSecond
 from JellyFish import JellyFish
 from Shark import Shark
+from TrashLvl2 import LataLvl2
 from utils import draw_shield_bar , draw_text
 
 def level2(screen, font, mainClock):
-    backgroundlv1 = pygame.image.load("./backgrounds/background_level1.jpeg").convert()
     running = True
+    bgS = []
+    animationBg = True
+
+    bgS.append(pygame.image.load("./backgroundLevel2/debajodeloceano2.png").convert())
+    bgS.append(pygame.image.load("./backgroundLevel2/debajodeloceano3.png").convert())
+    bgS.append(pygame.image.load("./backgroundLevel2/debajodeloceano4.png").convert())
+    bgS.append(pygame.image.load("./backgroundLevel2/debajodeloceano5.png").convert())
+    bgS.append(pygame.image.load("./backgroundLevel2/debajodeloceano6.png").convert())
+    bgS.append(pygame.image.load("./backgroundLevel2/debajodeloceano7.png").convert())
+    bgS.append(pygame.image.load("./backgroundLevel2/debajodeloceano8.png").convert())
+    bgS.append(pygame.image.load("./backgroundLevel2/debajodeloceano9.png").convert())
+    bgS.append(pygame.image.load("./backgroundLevel2/debajodeloceano10.png").convert())
+    bgS.append(pygame.image.load("./backgroundLevel2/debajodeloceano11.png").convert())
+    bgS.append(pygame.image.load("./backgroundLevel2/debajodeloceano12.png").convert())
+    bgS.append(pygame.image.load("./backgroundLevel2/debajodeloceano13.png").convert())
+    bgS.append(pygame.image.load("./backgroundLevel2/debajodeloceano14.png").convert())
+    bgS.append(pygame.image.load("./backgroundLevel2/debajodeloceano15.png").convert())
+    bgS.append(pygame.image.load("./backgroundLevel2/debajodeloceano16.png").convert())
+    bgS.append(pygame.image.load("./backgroundLevel2/debajodeloceano17.png").convert())
+    bgS.append(pygame.image.load("./backgroundLevel2/debajodeloceano18.png").convert())
+    bgS.append(pygame.image.load("./backgroundLevel2/debajodeloceano19.png").convert())
+    bgS.append(pygame.image.load("./backgroundLevel2/debajodeloceano20.png").convert())
+    bgS.append(pygame.image.load("./backgroundLevel2/debajodeloceano21.png").convert())
+    bgS.append(pygame.image.load("./backgroundLevel2/debajodeloceano22.png").convert())
+    bgS.append(pygame.image.load("./backgroundLevel2/debajodeloceano23.png").convert())
+    bgS.append(pygame.image.load("./backgroundLevel2/debajodeloceano24.png").convert())
+
+    currentBg = 0
+    image = bgS[currentBg]
+
     game_over = True
 
     while running: 
@@ -17,6 +47,7 @@ def level2(screen, font, mainClock):
             all_sprites = pygame.sprite.Group()
             jellyFishes_list = pygame.sprite.Group()
             sharks_list = pygame.sprite.Group()
+            lata_list = pygame.sprite.Group()
 
             score = 0
             player = PlayerSecond()
@@ -31,17 +62,77 @@ def level2(screen, font, mainClock):
                 shark = Shark()
                 all_sprites.add(shark)
                 sharks_list.add(shark) 
+            for i in range(3):
+                lata = LataLvl2()
+                all_sprites.add(lata)
+                lata_list.add(lata)
 
-        
+        if animationBg == True:
+            currentBg += 0.10
+        if int(currentBg) >= len(bgS):
+                currentBg = 0
+        if animationBg == True:
+                image = bgS[int(currentBg)]
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
             
 
         all_sprites.update()
-           
 
-        screen.blit(backgroundlv1, [0,0])
+        hitsSL = pygame.sprite.spritecollide(player, sharks_list, True)
+
+        for hit in hitsSL:
+            player.lifes -= 75
+            shark = Shark()
+            all_sprites.add(shark)
+            sharks_list.add(shark)
+
+        hitsJL = pygame.sprite.spritecollide(player, jellyFishes_list, True)
+
+        for hit in hitsJL:
+            player.lifes -= 25
+            jellyFish = JellyFish()
+            all_sprites.add(jellyFish)
+            jellyFishes_list.add(jellyFish)
+           
+        hitsTL = pygame.sprite.spritecollide(player, lata_list, True)
+
+        for hit in hitsTL:
+            score += 1
+            lata = LataLvl2()
+            all_sprites.add(lata)
+            lata_list.add(lata)
+        
+        if player.lifes <= 0:
+            game_over = True
+
+        if score == 15:
+            player.lifes = 100
+            score = 25
+
+            for i in range(5):
+                jellyFish = JellyFish()
+                all_sprites.add(jellyFish)
+                jellyFishes_list.add(jellyFish) 
+
+            for i in range(3):
+                shark = Shark()
+                all_sprites.add(shark)
+                sharks_list.add(shark) 
+
+            for i in range(3):
+                lata = LataLvl2()
+                all_sprites.add(lata)
+                lata_list.add(lata)
+
+        if score == 30:
+            pygame.quit()
+
+        
+
+        screen.blit(image, [0,0])
         all_sprites.draw(screen)
 
         draw_text('Puntaje: ', font, (255, 255, 255), screen, 1280//2-50, 10)

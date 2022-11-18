@@ -22,11 +22,13 @@ music = pygame.mixer.Sound("./sounds/lilparrotSong.mp3")
 click = False
  
 def main_menu():
+    global click
     while True:
+        
         music.play()
         screen.fill((0,0,0))
         draw_text('Lil Parrot Ody-Sea', font, (255, 255, 255), screen, 350, 40)
- 
+        
         mx, my = pygame.mouse.get_pos()
  
         button_game = pygame.Rect(WIDTH//2.5, 300, 250, 50)
@@ -42,7 +44,7 @@ def main_menu():
                 instructionsOfGame(screen , font , mainClock)
         if button_lenguage.collidepoint((mx,my)):
             if click:
-                pass
+                music.stop()
         if button_credits.collidepoint((mx,my)):
             if click:
                 credits(screen , font , mainClock)
@@ -65,7 +67,7 @@ def main_menu():
             if event.type == MOUSEBUTTONDOWN:
                 if event.button == 1:
                     click = True
-
+        
         pygame.display.update()
         mainClock.tick(60)
 main_menu()

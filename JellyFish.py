@@ -29,7 +29,7 @@ class JellyFish(pygame.sprite.Sprite):
         self.animation = True
 
     def update(self):
-        self.image.set_colorkey((0,0,0))   
+       
   
         if self.animation == True:
             self.current_sprite += 0.25
@@ -43,8 +43,11 @@ class JellyFish(pygame.sprite.Sprite):
         self.rect.x -= self.speedx
         self.rect.y -= self.speedy
 
+        self.image.set_colorkey((0,0,0))   
+
         
         self.moving()
+        
         if self.rect.top > 1280 + 10 or self.rect.left < -25 or self.rect.right > 1280 +25:
             self.rect.x = random.randrange(500,1200)
             self.rect.y = random.randrange(50 , 650)

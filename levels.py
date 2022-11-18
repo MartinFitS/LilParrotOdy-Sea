@@ -9,6 +9,7 @@ from level2 import level2
 click = False
 
 def levelsMenu(screen,  mainClock):
+    global click
     running = True
     while running:
         screen.fill((0,0,0))
@@ -18,8 +19,9 @@ def levelsMenu(screen,  mainClock):
         mx, my = pygame.mouse.get_pos()
 
 
-        button_LevelOne = pygame.Rect(370, 250, 250, 300)
-        button_LevelTwo = pygame.Rect(670, 250, 250, 300)
+        button_LevelOne = pygame.Rect(170, 250, 250, 300)
+        button_LevelTwo = pygame.Rect(470, 250, 250, 300)
+        button_LevelThree = pygame.Rect(770, 250, 250, 300)
 
         if button_LevelOne.collidepoint((mx, my)):
             if click:
@@ -27,9 +29,13 @@ def levelsMenu(screen,  mainClock):
         if button_LevelTwo.collidepoint((mx,my)):
             if click:
                 level2(screen , pygame.font.SysFont(None, 30), mainClock)
+        if button_LevelThree.collidepoint((mx,my)):
+            if click: 
+                pass
                 
         pygame.draw.rect(screen, (255, 0, 0), button_LevelOne)
         pygame.draw.rect(screen, (255, 0, 0), button_LevelTwo)
+        pygame.draw.rect(screen, (255,0,0), button_LevelThree)
 
         click = False
 
