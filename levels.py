@@ -5,16 +5,19 @@ from utils import draw_text
 
 from level1 import level1
 from level2 import level2
+from level3 import level3
 
 click = False
 
 def levelsMenu(screen,  mainClock):
     global click
+    imgFirstLvl = pygame.image.load("./levelsButtons/nv1.png").convert()
+    imgSecondLv2 = pygame.image.load("./levelsButtons/nv2.png").convert()
     running = True
     while running:
         screen.fill((0,0,0))
         
-        draw_text('Levels', pygame.font.SysFont(None, 100), (255, 255, 255), screen, 1280//2-100, 30)
+        draw_text('Levels', pygame.font.SysFont("pixelmix", 100), (255, 255, 255), screen, 1280//2-100, 30)
 
         mx, my = pygame.mouse.get_pos()
 
@@ -25,16 +28,18 @@ def levelsMenu(screen,  mainClock):
 
         if button_LevelOne.collidepoint((mx, my)):
             if click:
-                level1(screen, pygame.font.SysFont(None, 30),  mainClock)
+                level1(screen, pygame.font.SysFont("pixelmix normal", 30),  mainClock)
         if button_LevelTwo.collidepoint((mx,my)):
             if click:
-                level2(screen , pygame.font.SysFont(None, 30), mainClock)
+                level2(screen , pygame.font.SysFont("pixelmix normal", 30), mainClock)
         if button_LevelThree.collidepoint((mx,my)):
             if click: 
-                pass
+                level3(screen , pygame.font.SysFont("pixelmix normal", 30), mainClock)
                 
         pygame.draw.rect(screen, (255, 0, 0), button_LevelOne)
+        screen.blit(imgFirstLvl, [170, 250])
         pygame.draw.rect(screen, (255, 0, 0), button_LevelTwo)
+        screen.blit(imgSecondLv2, [470, 250])
         pygame.draw.rect(screen, (255,0,0), button_LevelThree)
 
         click = False

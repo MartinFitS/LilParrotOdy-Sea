@@ -1,14 +1,12 @@
-import pygame,sys
+import pygame
 from pygame.locals import *
 from Player import Player
-from Trash import Basura, Lata, Heart , Botella, Erizo
-from Kids import Ninos
-from level2 import level2
+from Trash import Basura
+from Crab import Crabs
+from BlueCrabs import BlueCrabs
 from utils import draw_shield_bar , draw_text, youWinLvl1Easy,youWinLvl1Hard
 
-
-
-def level1(screen, font, mainClock):
+def level3(screen, font, mainClock):
     running = True
     game_over  = True
     bgS = []
@@ -20,7 +18,7 @@ def level1(screen, font, mainClock):
     bgS.append(pygame.image.load("./backgroundLevel1/playa4.png").convert())
     bgS.append(pygame.image.load("./backgroundLevel1/playa5.png").convert())
     bgS.append(pygame.image.load("./backgroundLevel1/playa6.png").convert())
-
+    
     currentBg = 0
     image = bgS[currentBg]
 
@@ -30,40 +28,28 @@ def level1(screen, font, mainClock):
             game_over = False
 
             all_sprites = pygame.sprite.Group()
-            ninos_list = pygame.sprite.Group()
             basura_list = pygame.sprite.Group()
-            lata_list = pygame.sprite.Group()
-            erizo_list = pygame.sprite.Group()
-            botella_list = pygame.sprite.Group()
-            heart_list = pygame.sprite.Group()
+            crabs_list = pygame.sprite.Group()
+            blueCrabs = pygame.sprite.Group()
+
             score = 0
             player = Player()
             all_sprites.add(player)
             
-            for i in range(1):
-                heart = Heart()
-                all_sprites.add(heart)
-                heart_list.add(heart)
             for i in range(4):
                 basura = Basura()
                 all_sprites.add(basura)
                 basura_list.add(basura)
-            for i in range(10):
-                erizo = Erizo()
-                all_sprites.add(erizo)
-                erizo_list.add(erizo)
+            
+            for i in range(5):
+                crab = Crabs()
+                all_sprites.add(crab)
+                crabs_list.add(crab)
+            
             for i in range(3):
-                lata = Lata()
-                all_sprites.add(lata)
-                lata_list.add(lata)
-            for i in range(3):
-                botella = Botella()
-                all_sprites.add(botella)
-                lata_list.add(botella)
-            for i in range(3):
-                ninos = Ninos()
-                all_sprites.add(ninos)
-                ninos_list.add(ninos)
+                blueCrab = BlueCrabs()
+                all_sprites.add(blueCrab)
+                blueCrabs.add(blueCrab)
 
         
         for event in pygame.event.get():
@@ -73,38 +59,12 @@ def level1(screen, font, mainClock):
 
         all_sprites.update()
 
-        hitsNp = pygame.sprite.spritecollide(player, ninos_list, True)
-
-        for hit in hitsNp:
-            player.lifes -= 25
-            ninos = Ninos()
-            all_sprites.add(ninos)
-            ninos_list.add(ninos)
-            
-
-        hitsPe = pygame.sprite.spritecollide(player,erizo_list, True)
-
-        for hit in hitsPe: 
-            player.lifes -= 50
-            erizo = Erizo()
-            all_sprites.add(erizo)
-            erizo_list.add(erizo)
-            
-            
+        
         hitsPb = pygame.sprite.spritecollide(player, basura_list, True)
 
         for hit in hitsPb:
             score += 1  
         
-        hitsPL = pygame.sprite.spritecollide(player, lata_list, True)
-
-        for hit in hitsPL:
-            score += 1  
-        
-        hitsPBA = pygame.sprite.spritecollide(player, botella_list, True)
-
-        for hit in hitsPBA:
-            score += 1  
            
         if animationBg == True:
             currentBg += 0.10
@@ -126,26 +86,9 @@ def level1(screen, font, mainClock):
                 basura = Basura()
                 all_sprites.add(basura)
                 basura_list.add(basura)
-            for i in range(6):
-                erizo = Erizo()
-                all_sprites.add(erizo)
-                erizo_list.add(erizo)
-            for i in range(5):
-                lata = Lata()
-                all_sprites.add(lata)
-                lata_list.add(lata)
-            for i in range(3):
-                botella = Botella()
-                all_sprites.add(botella)
-                lata_list.add(botella)
-            for i in range(4):
-                ninos = Ninos()
-                all_sprites.add(ninos)
-                ninos_list.add(ninos)
             
         if score == 25:
             youWinLvl1Hard(screen, font, mainClock)
-            level2(screen,pygame.font.SysFont(None, 30) ,mainClock)
             
             
         screen.blit(image, [0,0])
@@ -161,3 +104,4 @@ def level1(screen, font, mainClock):
         mainClock.tick(60)
         pygame.display.flip()
     pygame.quit()
+

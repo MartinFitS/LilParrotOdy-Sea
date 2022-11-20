@@ -14,8 +14,8 @@ pygame.init()
 pygame.display.set_caption('Lil Parrot Odysea')
 screen = pygame.display.set_mode((WIDTH, HEIGHT),0,32)
  
-font = pygame.font.SysFont(None, 100)
-font_lifeBarText = pygame.font.SysFont(None, 30)
+font = pygame.font.SysFont("pixelmix", 100)
+font_lifeBarText = pygame.font.SysFont("pixelmix", 30)
  
 
 music = pygame.mixer.Sound("./sounds/lilparrotSong.mp3")
@@ -23,12 +23,11 @@ click = False
  
 def main_menu():
     global click
+    bg = pygame.image.load("./bg.png").convert()
     while True:
         
         music.play()
-        screen.fill((0,0,0))
-        draw_text('Lil Parrot Ody-Sea', font, (255, 255, 255), screen, 350, 40)
-        
+        screen.blit(bg, [0,0])
         mx, my = pygame.mouse.get_pos()
  
         button_game = pygame.Rect(WIDTH//2.5, 300, 250, 50)
@@ -67,7 +66,7 @@ def main_menu():
             if event.type == MOUSEBUTTONDOWN:
                 if event.button == 1:
                     click = True
-        
+
         pygame.display.update()
         mainClock.tick(60)
 main_menu()
