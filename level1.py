@@ -8,7 +8,7 @@ from utils import draw_shield_bar , draw_text, youWinLvl1Easy,youWinLvl1Hard
 
 
 
-def level1(screen, font, mainClock):
+def level1(screen, font, mainClock,recolect_trash,damageSound,win,go):
     running = True
     game_over  = True
     bgS = []
@@ -76,6 +76,7 @@ def level1(screen, font, mainClock):
         hitsNp = pygame.sprite.spritecollide(player, ninos_list, True)
 
         for hit in hitsNp:
+            damageSound.play()
             player.lifes -= 25
             ninos = Ninos()
             all_sprites.add(ninos)
@@ -85,6 +86,7 @@ def level1(screen, font, mainClock):
         hitsPe = pygame.sprite.spritecollide(player,erizo_list, True)
 
         for hit in hitsPe: 
+            damageSound.play()
             player.lifes -= 50
             erizo = Erizo()
             all_sprites.add(erizo)
@@ -94,16 +96,19 @@ def level1(screen, font, mainClock):
         hitsPb = pygame.sprite.spritecollide(player, basura_list, True)
 
         for hit in hitsPb:
+            recolect_trash.play()
             score += 1  
         
         hitsPL = pygame.sprite.spritecollide(player, lata_list, True)
 
         for hit in hitsPL:
+            recolect_trash.play()
             score += 1  
         
         hitsPBA = pygame.sprite.spritecollide(player, botella_list, True)
 
         for hit in hitsPBA:
+            recolect_trash.play()
             score += 1  
            
         if animationBg == True:
@@ -114,13 +119,15 @@ def level1(screen, font, mainClock):
                 image = bgS[int(currentBg)]
 
         if player.lifes <= 0:
+            go.play()
             youWinLvl1Easy(screen, font, mainClock)
             game_over = True
 
         if score == 10:
+            win.play()
             youWinLvl1Easy(screen, font, mainClock)
             player.lifes = 100
-            score = 10
+            score = 11
             
             for i in range(9):
                 basura = Basura()
@@ -144,8 +151,9 @@ def level1(screen, font, mainClock):
                 ninos_list.add(ninos)
             
         if score == 25:
+            win.play()
             youWinLvl1Hard(screen, font, mainClock)
-            level2(screen,pygame.font.SysFont(None, 30) ,mainClock)
+            level2(screen,pygame.font.SysFont(None, 30) ,mainClock,recolect_trash, damageSound,win,go)
             
             
         screen.blit(image, [0,0])

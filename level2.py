@@ -5,7 +5,7 @@ from Shark import Shark
 from TrashLvl2 import LataLvl2
 from utils import draw_shield_bar , draw_text
 
-def level2(screen, font, mainClock):
+def level2(screen, font, mainClock,recolect_trash,damageSound,win,go):
     running = True
     bgS = []
     animationBg = True
@@ -84,6 +84,7 @@ def level2(screen, font, mainClock):
         hitsSL = pygame.sprite.spritecollide(player, sharks_list, True)
 
         for hit in hitsSL:
+            damageSound.play()
             player.lifes -= 75
             shark = Shark()
             all_sprites.add(shark)
@@ -92,6 +93,7 @@ def level2(screen, font, mainClock):
         hitsJL = pygame.sprite.spritecollide(player, jellyFishes_list, True)
 
         for hit in hitsJL:
+            damageSound.play()
             player.lifes -= 25
             jellyFish = JellyFish()
             all_sprites.add(jellyFish)
@@ -100,17 +102,20 @@ def level2(screen, font, mainClock):
         hitsTL = pygame.sprite.spritecollide(player, lata_list, True)
 
         for hit in hitsTL:
+            recolect_trash.play()
             score += 1
             lata = LataLvl2()
             all_sprites.add(lata)
             lata_list.add(lata)
         
         if player.lifes <= 0:
+            go.play()
             game_over = True
 
         if score == 15:
+            win.play()
             player.lifes = 100
-            score = 25
+            score = 16
 
             for i in range(5):
                 jellyFish = JellyFish()

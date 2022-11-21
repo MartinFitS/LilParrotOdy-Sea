@@ -9,8 +9,9 @@ from level3 import level3
 
 click = False
 
-def levelsMenu(screen,  mainClock):
+def levelsMenu(screen, sound, mainClock,recolect_trash, damageSound,win,go):
     global click
+    imgBg = pygame.image.load("./levelsBg.png").convert()
     imgFirstLvl = pygame.image.load("./levelsButtons/nv1.png").convert()
     imgSecondLv2 = pygame.image.load("./levelsButtons/nv2.png").convert()
     running = True
@@ -28,18 +29,21 @@ def levelsMenu(screen,  mainClock):
 
         if button_LevelOne.collidepoint((mx, my)):
             if click:
-                level1(screen, pygame.font.SysFont("pixelmix normal", 30),  mainClock)
+                sound.play()
+                level1(screen, pygame.font.SysFont("pixelmix normal", 30),  mainClock,recolect_trash, damageSound,win,go)
         if button_LevelTwo.collidepoint((mx,my)):
             if click:
-                level2(screen , pygame.font.SysFont("pixelmix normal", 30), mainClock)
+                sound.play()
+                level2(screen , pygame.font.SysFont("pixelmix normal", 30), mainClock,recolect_trash, damageSound,win,go)
         if button_LevelThree.collidepoint((mx,my)):
             if click: 
+                sound.play()
                 level3(screen , pygame.font.SysFont("pixelmix normal", 30), mainClock)
                 
         pygame.draw.rect(screen, (255, 0, 0), button_LevelOne)
-        screen.blit(imgFirstLvl, [170, 250])
+
         pygame.draw.rect(screen, (255, 0, 0), button_LevelTwo)
-        screen.blit(imgSecondLv2, [470, 250])
+
         pygame.draw.rect(screen, (255,0,0), button_LevelThree)
 
         click = False
@@ -54,6 +58,8 @@ def levelsMenu(screen,  mainClock):
             if event.type == MOUSEBUTTONDOWN:
                 if event.button == 1:
                     click = True
-
+        screen.blit(imgBg, [0,0])
+        screen.blit(imgFirstLvl, [170, 250])
+        screen.blit(imgSecondLv2, [470, 250])
         pygame.display.update()
         mainClock.tick(60)

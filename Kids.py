@@ -39,8 +39,7 @@ class Ninos(pygame.sprite.Sprite):
 
     #Damos instrucciones de como se mueven los niños, esta vez de manera vertical
     def update(self):  
-        self.image.set_colorkey((0,0,0))
-        self.imageUp.set_colorkey((0,0,0))
+
         
         if self.animationDown == True:
             self.current_sprite += 0.25
@@ -59,6 +58,8 @@ class Ninos(pygame.sprite.Sprite):
             self.image = self.spriteUp[int(self.current_sprite)]
 
         self.rect.y += self.speedy
+        self.image.set_colorkey((0,0,0))
+        self.imageUp.set_colorkey((0,0,0))
 
         self.movingDown()
 
