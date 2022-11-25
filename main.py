@@ -1,5 +1,5 @@
 import pygame, sys
- 
+  
 mainClock = pygame.time.Clock()
 WIDTH = 1270
 HEIGHT = 720
@@ -12,7 +12,7 @@ from credits import credits
 pygame.init()
 pygame.display.set_caption('Lil Parrot Odysea')
 screen = pygame.display.set_mode((WIDTH, HEIGHT),0,32)
- 
+
 font = pygame.font.SysFont("pixelmix", 100)
 font_lifeBarText = pygame.font.SysFont("pixelmix", 30)
 
@@ -27,9 +27,13 @@ click = False
  
 def main_menu():
     global click
+    cc = 1
+    lg = False
     bg = pygame.image.load("./bg.png").convert()
     btn_jugar = pygame.image.load("./botonesMenu/JUGAR.png").convert()
+    btn_play = pygame.image.load("./utilsStatics/PLAY.png").convert()
     btn_ajustes = pygame.image.load("./botonesMenu/OPCIONES.png").convert()
+    btn_settings = pygame.image.load("./utilsStatics/SETTINGS.png").convert()
     while True:     
         # music.play()
 
@@ -50,7 +54,11 @@ def main_menu():
                 instructionsOfGame(screen , font , mainClock)
         if button_lenguage.collidepoint((mx,my)):
             if click:
-                music.stop()
+                cc = cc + 1
+                if cc % 2 == 0:
+                    lg =True
+                if cc % 2 != 0:
+                    lg = False
         if button_credits.collidepoint((mx,my)):
             if click:
                 credits(screen , font , mainClock)
@@ -58,7 +66,7 @@ def main_menu():
         pygame.draw.rect(screen, (255, 0, 0), button_game)
         pygame.draw.rect(screen, (255, 0, 0), button_instructions)
         pygame.draw.rect(screen, (255,0,0), button_credits)
-        pygame.draw.rect(screen , (255, 0, 0), button_lenguage)
+        
  
         click = False
         
@@ -77,6 +85,10 @@ def main_menu():
         screen.blit(bg, [0,0])
         screen.blit(btn_jugar, [WIDTH//2.5, 325])
         screen.blit(btn_ajustes, [WIDTH//2.5, 435])
+        if lg == True:
+            screen.blit(btn_play, [WIDTH//2.5, 325])
+            screen.blit(btn_settings, [WIDTH//2.5, 435])
+        pygame.draw.rect(screen , (255, 0, 0), button_lenguage)
         pygame.display.update()
         mainClock.tick(60)
 main_menu()

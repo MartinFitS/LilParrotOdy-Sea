@@ -3,6 +3,7 @@ from PlayerSecond import PlayerSecond
 from JellyFish import JellyFish
 from Shark import Shark
 from TrashLvl2 import LataLvl2
+from level3 import level3
 from utils import draw_shield_bar , draw_text
 
 def level2(screen, font, mainClock,recolect_trash,damageSound,win,go):
@@ -133,7 +134,8 @@ def level2(screen, font, mainClock,recolect_trash,damageSound,win,go):
                 lata_list.add(lata)
 
         if score == 30:
-            pygame.quit()
+            win.play()
+            level3(screen ,font, mainClock,recolect_trash,damageSound,win,go)
 
         
 

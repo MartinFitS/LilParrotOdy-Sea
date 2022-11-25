@@ -38,7 +38,7 @@ def levelsMenu(screen, sound, mainClock,recolect_trash, damageSound,win,go):
         if button_LevelThree.collidepoint((mx,my)):
             if click: 
                 sound.play()
-                level3(screen , pygame.font.SysFont("pixelmix normal", 30), mainClock)
+                level3(screen , pygame.font.SysFont("pixelmix normal", 30), mainClock,recolect_trash,damageSound,win,go)
                 
         pygame.draw.rect(screen, (255, 0, 0), button_LevelOne)
 

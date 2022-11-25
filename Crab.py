@@ -19,8 +19,8 @@ class Crabs(pygame.sprite.Sprite):
       
         self.rect = self.image.get_rect()
 
-        self.rect.x = random.randrange(1280 - self.rect.width)
-        self.rect.y = random.randrange(200, 600)
+        self.rect.x = random.randrange(240 + self.rect.width, 1050 - self.rect.width)
+        self.rect.y = random.randrange(0 + self.rect.height, 680 - self.rect.height)
         self.speedx = random.randrange(1,6)
 
     def moving(self):
@@ -41,8 +41,8 @@ class Crabs(pygame.sprite.Sprite):
         self.moving()
         self.image.set_colorkey((0,0,0))
 
-        if self.rect.right > 1280:
+        if self.rect.right > 1050:
             self.speedx *= -1
                    
-        if self.rect.left < 0:
+        if self.rect.left < 240:
             self.speedx *= -1
