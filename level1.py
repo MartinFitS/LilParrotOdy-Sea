@@ -4,7 +4,7 @@ from Player import Player
 from Trash import Basura, Lata, Heart , Botella, Erizo
 from Kids import Ninos
 from level2 import level2
-from utils import draw_shield_bar , draw_text, youWinLvl1Easy,youWinLvl1Hard
+from utils import draw_shield_bar , draw_text, youWinLvl1Easy,youWinLvl1Hard,youLooseLvl1
 
 
 
@@ -120,7 +120,7 @@ def level1(screen, font, mainClock,recolect_trash,damageSound,win,go):
 
         if player.lifes <= 0:
             go.play()
-            youWinLvl1Easy(screen, font, mainClock)
+            youLooseLvl1(screen, mainClock)
             game_over = True
 
         if score == 10:

@@ -4,7 +4,7 @@ from PlayerThird import Player
 from Trash import Basura
 from Crab import Crabs
 from BlueCrabs import BlueCrabs
-from utils import draw_shield_bar , draw_text, youWinLvl1Easy,youWinLvl1Hard
+from utils import draw_shield_bar , draw_text, youWinLvl1Easy,youWinLvl1Hard,youLooseLvl3
 
 def level3(screen, font, mainClock,recolect_trash,damageSound,win,go):
     running = True
@@ -91,7 +91,7 @@ def level3(screen, font, mainClock,recolect_trash,damageSound,win,go):
 
         if player.lifes <= 0:
             go.play()
-            youWinLvl1Easy(screen, font, mainClock)
+            youLooseLvl3(screen, mainClock)
             game_over = True
 
         if score == 10:

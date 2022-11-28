@@ -4,7 +4,7 @@ from JellyFish import JellyFish
 from Shark import Shark
 from TrashLvl2 import LataLvl2
 from level3 import level3
-from utils import draw_shield_bar , draw_text
+from utils import draw_shield_bar , draw_text,youLooseLvl2
 
 def level2(screen, font, mainClock,recolect_trash,damageSound,win,go):
     running = True
@@ -111,6 +111,7 @@ def level2(screen, font, mainClock,recolect_trash,damageSound,win,go):
         
         if player.lifes <= 0:
             go.play()
+            youLooseLvl2(screen, mainClock)
             game_over = True
 
         if score == 15:

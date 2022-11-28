@@ -16,6 +16,7 @@ def draw_shield_bar(screen,x,y,percentage):
     pygame.draw.rect(screen,(255,255,255), border, 2)
 
 def youWinLvl1Easy(screen, font,mainClock):
+   
     screen.fill((0,0,0))
     draw_text('Ganaste el nivel facil', font, (255, 255, 255), screen, 550, 40)
     draw_text('Presiona la tecla enter para jugar el nivel dificil', font, (255, 255, 255), screen, 550, 80)
@@ -28,6 +29,48 @@ def youWinLvl1Easy(screen, font,mainClock):
                 pygame.quit()
             if event.type == pygame.KEYDOWN:     
                 if event.key == pygame.K_SPACE:
+                    waiting = False
+
+def youLooseLvl1(screen,mainClock):
+    bg = pygame.image.load("./utilsStatics/gonivel1.png")
+    screen.blit(bg, [0,0])
+    pygame.display.flip()
+    waiting = True
+    while waiting:
+        mainClock.tick(60)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+            if event.type == pygame.KEYDOWN:     
+                if event.key == pygame.K_ESCAPE:
+                    waiting = False
+
+def youLooseLvl2(screen,mainClock):
+    bg = pygame.image.load("./utilsStatics/gonivel2.png")
+    screen.blit(bg, [0,0])
+    pygame.display.flip()
+    waiting = True
+    while waiting:
+        mainClock.tick(60)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+            if event.type == pygame.KEYDOWN:     
+                if event.key == pygame.K_ESCAPE:
+                    waiting = False
+
+def youLooseLvl3(screen,mainClock):
+    bg = pygame.image.load("./utilsStatics/gonivel3.png")
+    screen.blit(bg, [0,0])
+    pygame.display.flip()
+    waiting = True
+    while waiting:
+        mainClock.tick(60)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+            if event.type == pygame.KEYDOWN:     
+                if event.key == pygame.K_ESCAPE:
                     waiting = False
 
 def youWinLvl1Hard(screen, font,mainClock):

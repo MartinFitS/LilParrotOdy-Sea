@@ -54,6 +54,7 @@ def main_menu():
                 instructionsOfGame(screen , font , mainClock)
         if button_lenguage.collidepoint((mx,my)):
             if click:
+                select_menu.play()
                 cc = cc + 1
                 if cc % 2 == 0:
                     lg =True

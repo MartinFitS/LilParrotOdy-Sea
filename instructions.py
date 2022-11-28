@@ -3,9 +3,10 @@ from utils import draw_text
 from pygame.locals import *
 
 def instructionsOfGame(screen, font ,mainClock):
+    bg = pygame.image.load("./utilsStatics/controles.jpg")
     running = True
     while running:
-        screen.fill((0,0,0))
+        screen.blit(bg, [0,0])
  
         draw_text('options', font, (255, 255, 255), screen, 20, 20)
         for event in pygame.event.get():
