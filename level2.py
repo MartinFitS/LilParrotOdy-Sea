@@ -1,12 +1,19 @@
 import pygame,sys;
+from pygame.locals import *
 from PlayerSecond import PlayerSecond
 from JellyFish import JellyFish
 from Shark import Shark
 from TrashLvl2 import LataLvl2
 from level3 import level3
-from utils import draw_shield_bar , draw_text,youLooseLvl2
+from utils import draw_shield_bar , pantalla,draw_text,youLooseLvl2,pause
 
-def level2(screen, font, mainClock,recolect_trash,damageSound,win,go):
+def level2(screen, font, mainClock,recolect_trash,damageSound,win,go,lg):
+    g_fd = pygame.image.load("./utilsStatics/debajodeloceano2.png").convert()
+    g_sd = pygame.image.load("./utilsStatics/debajodeloceano.png").convert()
+
+    w_fd = pygame.image.load("./utilsStatics/under the sea.png").convert()
+    w_sd = pygame.image.load("./utilsStatics/under the sea 2.png").convert()
+
     running = True
     bgS = []
     animationBg = True
@@ -78,6 +85,9 @@ def level2(screen, font, mainClock,recolect_trash,damageSound,win,go):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+            elif event.type == KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    pause(running)
             
 
         all_sprites.update()
@@ -116,6 +126,10 @@ def level2(screen, font, mainClock,recolect_trash,damageSound,win,go):
 
         if score == 15:
             win.play()
+            if lg == False: 
+                pantalla(screen, g_fd , mainClock)
+            if lg == True:
+                pantalla(screen, w_fd , mainClock)
             player.lifes = 100
             score = 16
 
@@ -136,6 +150,12 @@ def level2(screen, font, mainClock,recolect_trash,damageSound,win,go):
 
         if score == 30:
             win.play()
+            if lg == False: 
+                pantalla(screen, g_sd , mainClock)
+            if lg == True:
+                pantalla(screen, w_sd , mainClock)
+
+ 
             level3(screen ,font, mainClock,recolect_trash,damageSound,win,go)
 
         
@@ -143,11 +163,16 @@ def level2(screen, font, mainClock,recolect_trash,damageSound,win,go):
         screen.blit(image, [0,0])
         all_sprites.draw(screen)
 
-        draw_text('Puntaje: ', font, (255, 255, 255), screen, 1280//2-50, 10)
-        draw_text(str(score), font, (255, 255, 255), screen,  1280//2+50, 10)
-
-        draw_text('Barra de vida: ', font, (255, 255, 255), screen, 10, 10)
-        draw_shield_bar(screen, 160,15, player.lifes)
+        if lg == False:
+            draw_text('Puntaje: ', font, (255, 255, 255), screen, 1280//2-50, 10)
+            draw_text(str(score), font, (255, 255, 255), screen,  1280//2+50, 10)
+            draw_text('Barra de vida: ', font, (255, 255, 255), screen, 10, 10)
+            draw_shield_bar(screen, 160,15, player.lifes)
+        if lg == True:
+            draw_text('Score: ', font, (255, 255, 255), screen, 1280//2-50, 10)
+            draw_text(str(score), font, (255, 255, 255), screen,  1280//2+50, 10)
+            draw_text('Life: ', font, (255, 255, 255), screen, 10, 10)
+            draw_shield_bar(screen, 160,15, player.lifes)
 
         pygame.display.update()
         mainClock.tick(60)

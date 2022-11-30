@@ -15,6 +15,19 @@ def draw_shield_bar(screen,x,y,percentage):
     pygame.draw.rect(screen,(0,255,0), fill)
     pygame.draw.rect(screen,(255,255,255), border, 2)
 
+def pause(running):
+    paused = True
+    while paused: 
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                paused = False
+                running = False
+                pygame.quit()
+                exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    paused = False
+
 def youWinLvl1Easy(screen, font,mainClock):
    
     screen.fill((0,0,0))
@@ -29,6 +42,19 @@ def youWinLvl1Easy(screen, font,mainClock):
                 pygame.quit()
             if event.type == pygame.KEYDOWN:     
                 if event.key == pygame.K_SPACE:
+                    waiting = False
+
+def pantalla(screen,img, mainClock):
+    screen.blit(img, [0,0])
+    pygame.display.flip()
+    waiting = True
+    while waiting:
+        mainClock.tick(60)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+            if event.type == pygame.KEYDOWN:     
+                if event.key == pygame.K_ESCAPE:
                     waiting = False
 
 def youLooseLvl1(screen,mainClock):

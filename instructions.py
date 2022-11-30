@@ -7,8 +7,7 @@ def instructionsOfGame(screen, font ,mainClock):
     running = True
     while running:
         screen.blit(bg, [0,0])
- 
-        draw_text('options', font, (255, 255, 255), screen, 20, 20)
+        
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()

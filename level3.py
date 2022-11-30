@@ -4,9 +4,14 @@ from PlayerThird import Player
 from Trash import Basura
 from Crab import Crabs
 from BlueCrabs import BlueCrabs
-from utils import draw_shield_bar , draw_text, youWinLvl1Easy,youWinLvl1Hard,youLooseLvl3
+from utils import draw_shield_bar , draw_text,pantalla,youLooseLvl3,pause
 
-def level3(screen, font, mainClock,recolect_trash,damageSound,win,go):
+def level3(screen, font, mainClock,recolect_trash,damageSound,win,go,lg):
+    g_fd = pygame.image.load("./utilsStatics/muelle1.png").convert()
+    g_sd = pygame.image.load("./utilsStatics/muelle2.png").convert()
+
+    w_fd = pygame.image.load("./utilsStatics/dock.png").convert()
+    w_sd = pygame.image.load("./utilsStatics/dock2.png").convert()
     running = True
     game_over  = True
     bgS = []
@@ -59,6 +64,9 @@ def level3(screen, font, mainClock,recolect_trash,damageSound,win,go):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+            elif event.type == KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    pause(running)
             
 
         all_sprites.update()
@@ -96,7 +104,10 @@ def level3(screen, font, mainClock,recolect_trash,damageSound,win,go):
 
         if score == 10:
             win.play()
-            youWinLvl1Easy(screen, font, mainClock)
+            if lg == False: 
+                pantalla(screen, g_fd , mainClock)
+            if lg == True:
+                pantalla(screen, w_fd , mainClock)
             player.lifes = 100
             score = 11
             
@@ -122,17 +133,26 @@ def level3(screen, font, mainClock,recolect_trash,damageSound,win,go):
             
         if score == 25:
             win.play()
-            youWinLvl1Hard(screen, font, mainClock)
+            if lg == True:
+                pantalla(screen, w_sd , mainClock)
+            if lg == False:
+                pantalla(screen, g_sd , mainClock)
+
             
             
         screen.blit(image, [0,0])
         all_sprites.draw(screen)
 
-        draw_text('Puntaje: ', font, (255, 255, 255), screen, 1280//2-50, 10)
-        draw_text(str(score), font, (255, 255, 255), screen,  1280//2+50, 10)
-
-        draw_text('Barra de vida: ', font, (255, 255, 255), screen, 10, 10)
-        draw_shield_bar(screen, 160,15, player.lifes)
+        if lg == False:
+            draw_text('Puntaje: ', font, (255, 255, 255), screen, 1280//2-50, 10)
+            draw_text(str(score), font, (255, 255, 255), screen,  1280//2+50, 10)
+            draw_text('Barra de vida: ', font, (255, 255, 255), screen, 10, 10)
+            draw_shield_bar(screen, 160,15, player.lifes)
+        if lg == True:
+            draw_text('Score: ', font, (255, 255, 255), screen, 1280//2-50, 10)
+            draw_text(str(score), font, (255, 255, 255), screen,  1280//2+50, 10)
+            draw_text('Life: ', font, (255, 255, 255), screen, 10, 10)
+            draw_shield_bar(screen, 160,15, player.lifes)
 
         pygame.display.update()
         mainClock.tick(60)

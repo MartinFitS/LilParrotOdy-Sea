@@ -42,12 +42,12 @@ def main_menu():
         button_game = pygame.Rect(WIDTH//2.5, 325, 300, 80)
         button_instructions = pygame.Rect(WIDTH//2.5, 435, 300, 80)
         button_credits = pygame.Rect(WIDTH//2.5, 550, 300, 80)
-        button_lenguage = pygame.Rect(20, 30, 60,50)
+        button_lenguage = pygame.Rect(20, 40, 70,50)
         
         if button_game.collidepoint((mx, my)):
             if click:
                 select_menu.play()
-                levelsMenu(screen, select_menu, mainClock, recolect_trash,damage_sound,win, go)
+                levelsMenu(screen, select_menu, mainClock, recolect_trash,damage_sound,win, go,lg)
         if button_instructions.collidepoint((mx, my)):
             if click:
                 select_menu.play()

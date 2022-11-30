@@ -9,11 +9,12 @@ from level3 import level3
 
 click = False
 
-def levelsMenu(screen, sound, mainClock,recolect_trash, damageSound,win,go):
+def levelsMenu(screen, sound, mainClock,recolect_trash, damageSound,win,go, lg):
     global click
     imgBg = pygame.image.load("./levelsBg.png").convert()
     imgFirstLvl = pygame.image.load("./levelsButtons/nv1.png").convert()
     imgSecondLv2 = pygame.image.load("./levelsButtons/nv2.png").convert()
+    imgThirdLv3 = pygame.image.load("./levelsButtons/nv3.png").convert()
     running = True
     while running:
         screen.fill((0,0,0))
@@ -30,15 +31,15 @@ def levelsMenu(screen, sound, mainClock,recolect_trash, damageSound,win,go):
         if button_LevelOne.collidepoint((mx, my)):
             if click:
                 sound.play()
-                level1(screen, pygame.font.SysFont("pixelmix normal", 30),  mainClock,recolect_trash, damageSound,win,go)
+                level1(screen, pygame.font.SysFont("pixelmix normal", 30),  mainClock,recolect_trash, damageSound,win,go, lg)
         if button_LevelTwo.collidepoint((mx,my)):
             if click:
                 sound.play()
-                level2(screen , pygame.font.SysFont("pixelmix normal", 30), mainClock,recolect_trash, damageSound,win,go)
+                level2(screen , pygame.font.SysFont("pixelmix normal", 30), mainClock,recolect_trash, damageSound,win,go,lg)
         if button_LevelThree.collidepoint((mx,my)):
             if click: 
                 sound.play()
-                level3(screen , pygame.font.SysFont("pixelmix normal", 30), mainClock,recolect_trash,damageSound,win,go)
+                level3(screen , pygame.font.SysFont("pixelmix normal", 30), mainClock,recolect_trash,damageSound,win,go,lg)
                 
         pygame.draw.rect(screen, (255, 0, 0), button_LevelOne)
 
@@ -61,5 +62,6 @@ def levelsMenu(screen, sound, mainClock,recolect_trash, damageSound,win,go):
         screen.blit(imgBg, [0,0])
         screen.blit(imgFirstLvl, [170, 250])
         screen.blit(imgSecondLv2, [470, 250])
+        screen.blit(imgThirdLv3, [770, 250])
         pygame.display.update()
         mainClock.tick(60)
