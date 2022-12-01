@@ -16,7 +16,7 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT),0,32)
 font = pygame.font.SysFont("pixelmix", 100)
 font_lifeBarText = pygame.font.SysFont("pixelmix", 30)
 
-music = pygame.mixer.Sound("./sounds/lilparrotSong.mp3")
+music = pygame.mixer.Sound("./sounds/mfdv.mp3")
 select_menu = pygame.mixer.Sound("./sounds/select_menuSound.mp3")
 recolect_trash = pygame.mixer.Sound("./sounds/recolectSound.wav")
 damage_sound = pygame.mixer.Sound("./sounds/damageSound.wav")
@@ -28,14 +28,20 @@ click = False
 def main_menu():
     global click
     cc = 1
+    cs = 1
     lg = False
+    s = False
     bg = pygame.image.load("./bg.png").convert()
     btn_jugar = pygame.image.load("./botonesMenu/JUGAR.png").convert()
     btn_play = pygame.image.load("./utilsStatics/PLAY.png").convert()
     btn_ajustes = pygame.image.load("./botonesMenu/OPCIONES.png").convert()
     btn_settings = pygame.image.load("./utilsStatics/SETTINGS.png").convert()
-    while True:     
-        # music.play()
+    m_f = pygame.image.load("./utilsStatics/mexico.png").convert()
+    i_f = pygame.image.load("./utilsStatics/reinoUnido.png").convert()
+
+    music.play()
+        
+    while True:      
 
         mx, my = pygame.mouse.get_pos()
  
@@ -43,6 +49,7 @@ def main_menu():
         button_instructions = pygame.Rect(WIDTH//2.5, 435, 300, 80)
         button_credits = pygame.Rect(WIDTH//2.5, 550, 300, 80)
         button_lenguage = pygame.Rect(20, 40, 70,50)
+        button_sound = pygame.Rect(1180,40,70,50)
         
         if button_game.collidepoint((mx, my)):
             if click:
@@ -63,12 +70,15 @@ def main_menu():
         if button_credits.collidepoint((mx,my)):
             if click:
                 credits(screen , font , mainClock)
-
-        pygame.draw.rect(screen, (255, 0, 0), button_game)
-        pygame.draw.rect(screen, (255, 0, 0), button_instructions)
-        pygame.draw.rect(screen, (255,0,0), button_credits)
+        if button_sound.collidepoint((mx,my)):
+            if click:
+                cs = cs + 1
+                print(s)
+                if cs % 2 == 0:
+                    s = True
+                if cs % 2 != 0:
+                    s = False
         
- 
         click = False
         
         for event in pygame.event.get():
@@ -83,13 +93,20 @@ def main_menu():
             if event.type == MOUSEBUTTONDOWN:
                 if event.button == 1:
                     click = True
+
         screen.blit(bg, [0,0])
         screen.blit(btn_jugar, [WIDTH//2.5, 325])
         screen.blit(btn_ajustes, [WIDTH//2.5, 435])
+        screen.blit(m_f, [20, 40])
+        pygame.draw.rect(screen, (255,0,0), button_sound)
+        
         if lg == True:
             screen.blit(btn_play, [WIDTH//2.5, 325])
             screen.blit(btn_settings, [WIDTH//2.5, 435])
-        pygame.draw.rect(screen , (255, 0, 0), button_lenguage)
+            screen.blit(i_f, [20, 40])
+
+        if s == False:
+            music.stop()
         pygame.display.update()
         mainClock.tick(60)
 main_menu()

@@ -14,6 +14,9 @@ def level2(screen, font, mainClock,recolect_trash,damageSound,win,go,lg):
     w_fd = pygame.image.load("./utilsStatics/under the sea.png").convert()
     w_sd = pygame.image.load("./utilsStatics/under the sea 2.png").convert()
 
+    consejoLv2 = pygame.image.load("./consejos/consejo lv2.png").convert()
+    adviceLv2 = pygame.image.load("./consejos/advice lv2.png").convert()
+
     running = True
     bgS = []
     animationBg = True
@@ -51,6 +54,10 @@ def level2(screen, font, mainClock,recolect_trash,damageSound,win,go,lg):
         if game_over:
 
             game_over = False
+            if lg == False:
+                pantalla(screen, consejoLv2, mainClock)
+            if lg == True:
+                pantalla(screen, adviceLv2, mainClock)
 
             all_sprites = pygame.sprite.Group()
             jellyFishes_list = pygame.sprite.Group()
@@ -156,7 +163,7 @@ def level2(screen, font, mainClock,recolect_trash,damageSound,win,go,lg):
                 pantalla(screen, w_sd , mainClock)
 
  
-            level3(screen ,font, mainClock,recolect_trash,damageSound,win,go)
+            level3(screen ,font, mainClock,recolect_trash,damageSound,win,go,lg)
 
         
 

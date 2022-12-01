@@ -16,7 +16,10 @@ def level1(screen, font, mainClock,recolect_trash,damageSound,win,go,lg):
     w_sd = pygame.image.load("./utilsStatics/beach2.png").convert()
 
     controlesBg = pygame.image.load("./utilsStatics/controles.jpg").convert()
-    
+    controlsBg = pygame.image.load("./utilsStatics/controls.png").convert()
+
+    consejoLv1 = pygame.image.load("./consejos/consejo lv1.png").convert()
+    adviceLv1 = pygame.image.load("./consejos/advice lv1.png").convert()
     running = True
     game_over  = True
     bgS = []
@@ -36,7 +39,12 @@ def level1(screen, font, mainClock,recolect_trash,damageSound,win,go,lg):
         if game_over:
 
             game_over = False
-            pantalla(screen, controlesBg, mainClock)
+            if lg == False:
+                pantalla(screen, controlesBg, mainClock)
+                pantalla(screen, consejoLv1, mainClock)
+            if lg == True:
+                pantalla(screen, controlsBg, mainClock)
+                pantalla(screen, adviceLv1, mainClock)
             all_sprites = pygame.sprite.Group()
             ninos_list = pygame.sprite.Group()
             basura_list = pygame.sprite.Group()
@@ -170,7 +178,7 @@ def level1(screen, font, mainClock,recolect_trash,damageSound,win,go,lg):
                 pantalla(screen, w_sd , mainClock)
             if lg == False:
                 pantalla(screen, g_sd , mainClock)
-            level2(screen,pygame.font.SysFont(None, 30) ,mainClock,recolect_trash, damageSound,win,go)
+            level2(screen,pygame.font.SysFont(None, 30) ,mainClock,recolect_trash, damageSound,win,go,lg)
             
             
         screen.blit(image, [0,0])

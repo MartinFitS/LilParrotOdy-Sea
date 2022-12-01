@@ -12,6 +12,10 @@ def level3(screen, font, mainClock,recolect_trash,damageSound,win,go,lg):
 
     w_fd = pygame.image.load("./utilsStatics/dock.png").convert()
     w_sd = pygame.image.load("./utilsStatics/dock2.png").convert()
+
+    consejoLv3 = pygame.image.load("./consejos/consejo lv3.png").convert()
+    adviceLv3 = pygame.image.load("./consejos/advice lv3.png").convert()
+
     running = True
     game_over  = True
     bgS = []
@@ -33,7 +37,10 @@ def level3(screen, font, mainClock,recolect_trash,damageSound,win,go,lg):
         if game_over:
 
             game_over = False
-
+            if lg == False:
+                pantalla(screen, consejoLv3, mainClock)
+            if lg == True:
+                pantalla(screen, adviceLv3, mainClock)
             all_sprites = pygame.sprite.Group()
             basura_list = pygame.sprite.Group()
             crabs_list = pygame.sprite.Group()
@@ -127,16 +134,17 @@ def level3(screen, font, mainClock,recolect_trash,damageSound,win,go,lg):
                 blueCrab = BlueCrabs()
                 all_sprites.add(blueCrab)
                 blueCrabs.add(blueCrab)
-            
-            
-
-            
+                     
         if score == 25:
             win.play()
             if lg == True:
                 pantalla(screen, w_sd , mainClock)
+                running = False
+                from main import main_menu
             if lg == False:
                 pantalla(screen, g_sd , mainClock)
+                running = False
+                from main import main_menu
 
             
             
