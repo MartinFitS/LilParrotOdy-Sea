@@ -7,7 +7,7 @@ from TrashLvl2 import LataLvl2
 from level3 import level3
 from utils import draw_shield_bar , pantalla,draw_text,youLooseLvl2,pause
 
-def level2(screen, font, mainClock,recolect_trash,damageSound,win,go,lg):
+def level2(screen, font, mainClock,recolect_trash,damageSound,win,go,lg,select_menu,cc,cm,m,music):
     g_fd = pygame.image.load("./utilsStatics/debajodeloceano2.png").convert()
     g_sd = pygame.image.load("./utilsStatics/debajodeloceano.png").convert()
 
@@ -94,7 +94,7 @@ def level2(screen, font, mainClock,recolect_trash,damageSound,win,go,lg):
                 running = False
             elif event.type == KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
-                    pause(running)
+                    pause(running,screen,select_menu,lg,cc,cm,m,music)
             
 
         all_sprites.update()
@@ -163,7 +163,7 @@ def level2(screen, font, mainClock,recolect_trash,damageSound,win,go,lg):
                 pantalla(screen, w_sd , mainClock)
 
  
-            level3(screen ,font, mainClock,recolect_trash,damageSound,win,go,lg)
+            level3(screen ,font, mainClock,recolect_trash,damageSound,win,go,lg,select_menu,cc,cm,m,music)
 
         
 

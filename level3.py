@@ -6,7 +6,7 @@ from Crab import Crabs
 from BlueCrabs import BlueCrabs
 from utils import draw_shield_bar , draw_text,pantalla,youLooseLvl3,pause
 
-def level3(screen, font, mainClock,recolect_trash,damageSound,win,go,lg):
+def level3(screen, font, mainClock,recolect_trash,damageSound,win,go,lg,select_menu,cc,cm,m,music):
     g_fd = pygame.image.load("./utilsStatics/muelle1.png").convert()
     g_sd = pygame.image.load("./utilsStatics/muelle2.png").convert()
 
@@ -73,7 +73,7 @@ def level3(screen, font, mainClock,recolect_trash,damageSound,win,go,lg):
                 running = False
             elif event.type == KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
-                    pause(running)
+                    pause(running,screen,select_menu,lg,cc,cm,m,music)
             
 
         all_sprites.update()
@@ -145,6 +145,7 @@ def level3(screen, font, mainClock,recolect_trash,damageSound,win,go,lg):
                 pantalla(screen, g_sd , mainClock)
                 running = False
                 from main import main_menu
+                main_menu()
 
             
             

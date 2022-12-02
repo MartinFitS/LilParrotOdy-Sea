@@ -9,7 +9,7 @@ from level3 import level3
 
 click = False
 
-def levelsMenu(screen, sound, mainClock,recolect_trash, damageSound,win,go, lg):
+def levelsMenu(screen, sound, mainClock,recolect_trash, damageSound,win,go, lg,select_menu,cc,cm,m,music):
     global click
     imgBg = pygame.image.load("./levelsBg.png").convert()
     imgFirstLvl = pygame.image.load("./levelsButtons/nv1.png").convert()
@@ -31,15 +31,15 @@ def levelsMenu(screen, sound, mainClock,recolect_trash, damageSound,win,go, lg):
         if button_LevelOne.collidepoint((mx, my)):
             if click:
                 sound.play()
-                level1(screen, pygame.font.SysFont("pixelmix normal", 30),  mainClock,recolect_trash, damageSound,win,go, lg)
+                level1(screen, pygame.font.SysFont("pixelmix normal", 30),  mainClock,recolect_trash, damageSound,win,go, lg,select_menu,cc,cm,m,music)
         if button_LevelTwo.collidepoint((mx,my)):
             if click:
                 sound.play()
-                level2(screen , pygame.font.SysFont("pixelmix normal", 30), mainClock,recolect_trash, damageSound,win,go,lg)
+                level2(screen , pygame.font.SysFont("pixelmix normal", 30), mainClock,recolect_trash, damageSound,win,go,lg,select_menu,cc,cm,m,music)
         if button_LevelThree.collidepoint((mx,my)):
             if click: 
                 sound.play()
-                level3(screen , pygame.font.SysFont("pixelmix normal", 30), mainClock,recolect_trash,damageSound,win,go,lg)
+                level3(screen , pygame.font.SysFont("pixelmix normal", 30), mainClock,recolect_trash,damageSound,win,go,lg,select_menu,cc,cm,m,music)
                 
         pygame.draw.rect(screen, (255, 0, 0), button_LevelOne)
 
@@ -55,7 +55,9 @@ def levelsMenu(screen, sound, mainClock,recolect_trash, damageSound,win,go, lg):
                 sys.exit()
             if event.type == KEYDOWN:
                 if event.key == K_ESCAPE:
+                    select_menu.play()
                     running = False
+                    
             if event.type == MOUSEBUTTONDOWN:
                 if event.button == 1:
                     click = True

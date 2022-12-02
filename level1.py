@@ -1,14 +1,14 @@
 import pygame,sys
 from pygame.locals import *
 from Player import Player
-from Trash import Basura, Lata, Heart , Botella, Erizo
+from Trash import Basura, Lata , Botella, Erizo
 from Kids import Ninos
 from level2 import level2
 from utils import pantalla, draw_shield_bar , draw_text,youLooseLvl1,pause
 
 
 
-def level1(screen, font, mainClock,recolect_trash,damageSound,win,go,lg):
+def level1(screen, font, mainClock,recolect_trash,damageSound,win,go,lg,menu_sound,cc,cm,m,music):
     g_fd = pygame.image.load("./utilsStatics/playa1.png").convert()
     g_sd = pygame.image.load("./utilsStatics/playa2.png").convert()
 
@@ -51,15 +51,11 @@ def level1(screen, font, mainClock,recolect_trash,damageSound,win,go,lg):
             lata_list = pygame.sprite.Group()
             erizo_list = pygame.sprite.Group()
             botella_list = pygame.sprite.Group()
-            heart_list = pygame.sprite.Group()
             score = 0
             player = Player()
             all_sprites.add(player)
             
-            for i in range(1):
-                heart = Heart()
-                all_sprites.add(heart)
-                heart_list.add(heart)
+
             for i in range(4):
                 basura = Basura()
                 all_sprites.add(basura)
@@ -87,7 +83,7 @@ def level1(screen, font, mainClock,recolect_trash,damageSound,win,go,lg):
                 running = False
             elif event.type == KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
-                    pause(running)
+                    pause(running,screen,menu_sound, lg,cc,cm,m,music)
             
 
         all_sprites.update()
@@ -159,7 +155,7 @@ def level1(screen, font, mainClock,recolect_trash,damageSound,win,go,lg):
                 erizo = Erizo()
                 all_sprites.add(erizo)
                 erizo_list.add(erizo)
-            for i in range(5):
+            for i in range(2):
                 lata = Lata()
                 all_sprites.add(lata)
                 lata_list.add(lata)
@@ -178,7 +174,7 @@ def level1(screen, font, mainClock,recolect_trash,damageSound,win,go,lg):
                 pantalla(screen, w_sd , mainClock)
             if lg == False:
                 pantalla(screen, g_sd , mainClock)
-            level2(screen,pygame.font.SysFont(None, 30) ,mainClock,recolect_trash, damageSound,win,go,lg)
+            level2(screen,pygame.font.SysFont(None, 30) ,mainClock,recolect_trash, damageSound,win,go,lg, menu_sound, cc,cm,m,music)
             
             
         screen.blit(image, [0,0])
