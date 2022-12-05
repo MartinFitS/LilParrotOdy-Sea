@@ -161,9 +161,7 @@ def level2(screen, font, mainClock,recolect_trash,damageSound,win,go,lg,select_m
                 pantalla(screen, g_sd , mainClock)
             if lg == True:
                 pantalla(screen, w_sd , mainClock)
-
- 
-            level3(screen ,font, mainClock,recolect_trash,damageSound,win,go,lg,select_menu,cc,cm,m,music)
+            level3(screen, font, mainClock,recolect_trash,damageSound,win,go,lg,select_menu,cc,cm,m,music,j_contador)
 
         
 

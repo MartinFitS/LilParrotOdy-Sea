@@ -10,25 +10,24 @@ from level3 import level3
 from utils import pantalla
 click = False
 
-def levelsMenu(screen, sound, mainClock,recolect_trash, damageSound,win,go, lg,select_menu,cc,cm,m,music,mainrun,j_contador):
+def levelsMenu(screen, sound, mainClock,recolect_trash, damageSound,win,go, lg,select_menu,cc,cm,m,music,mainrun,j_contador,audioM,audioP,audioV,audioA):
     global click
     imgBg = pygame.image.load("./levelsBg.png").convert()
     imgFirstLvl = pygame.image.load("./levelsButtons/nv1.png").convert()
     imgSecondLv2 = pygame.image.load("./levelsButtons/nv2.png").convert()
     imgThirdLv3 = pygame.image.load("./levelsButtons/nv3.png").convert()
+    bgLevels = pygame.image.load("./levelsButtons/Levels.png").convert()
+    bgNiveles = pygame.image.load("./levelsButtons/niveles.png").convert()
     mensaje = pygame.image.load("./utilsStatics/mensaje.png")
     running = True
     while running:
-        screen.fill((0,0,0))
-        
-        draw_text('Levels', pygame.font.SysFont("pixelmix", 100), (255, 255, 255), screen, 1280//2-100, 30)
 
         mx, my = pygame.mouse.get_pos()
 
 
-        button_LevelOne = pygame.Rect(170, 250, 250, 100)
-        button_LevelTwo = pygame.Rect(470, 250, 250, 100)
-        button_LevelThree = pygame.Rect(770, 250, 250, 100)
+        button_LevelOne = pygame.Rect(22, 25, 170, 220)
+        button_LevelTwo = pygame.Rect(554, 525, 170, 220)
+        button_LevelThree = pygame.Rect(1080, 25, 170, 220)
         if button_LevelOne.collidepoint((mx, my)):
             if click:
                 sound.play()
@@ -40,13 +39,9 @@ def levelsMenu(screen, sound, mainClock,recolect_trash, damageSound,win,go, lg,s
         if button_LevelThree.collidepoint((mx,my)):
             if click: 
                 sound.play()
-                level3(screen , pygame.font.SysFont("pixelmix normal", 30), mainClock,recolect_trash,damageSound,win,go,lg,select_menu,cc,cm,m,music,mainrun,j_contador)
+                level3(screen , pygame.font.SysFont("pixelmix normal", 30), mainClock,recolect_trash,damageSound,win,go,lg,select_menu,cc,cm,m,music,j_contador,audioM,audioP,audioV,audioA)
                 
-        pygame.draw.rect(screen, (255, 0, 0), button_LevelOne)
-
-        pygame.draw.rect(screen, (255, 0, 0), button_LevelTwo)
-
-        pygame.draw.rect(screen, (255,0,0), button_LevelThree)
+        
 
         click = False
 
@@ -62,9 +57,9 @@ def levelsMenu(screen, sound, mainClock,recolect_trash, damageSound,win,go, lg,s
             if event.type == MOUSEBUTTONDOWN:
                 if event.button == 1:
                     click = True
-        screen.blit(imgBg, [0,0])
-        screen.blit(imgFirstLvl, [170, 250])
-        screen.blit(imgSecondLv2, [470, 250])
-        screen.blit(imgThirdLv3, [770, 250])
+        if lg == True:
+            screen.blit(bgLevels, [0,0])
+        if lg == False:
+            screen.blit(bgNiveles, [0,0])
         pygame.display.update()
         mainClock.tick(60)

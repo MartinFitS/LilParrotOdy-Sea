@@ -24,6 +24,11 @@ damage_sound = pygame.mixer.Sound("./sounds/damageSound.wav")
 win = pygame.mixer.Sound("./sounds/winlvl.wav")
 go = pygame.mixer.Sound("./sounds/gameOver.wav")
 music = pygame.mixer.Sound("./sounds/mfdv.mp3")
+audioM = pygame.mixer.Sound("./sounds/audioMarto.mp3")
+audioP = pygame.mixer.Sound("./sounds/audioPaco.mp3")
+audioV = pygame.mixer.Sound("./sounds/audioVictor.mp3")
+audioA = pygame.mixer.Sound("./sounds/audioAxel.mp3")
+
 click = False
 j_contador = 0
 
@@ -45,15 +50,16 @@ def main_menu(j_contador):
     i_f = pygame.image.load("./utilsStatics/reinoUnido.png").convert()
     sO = pygame.image.load("./utilsStatics/SonidoOn.png").convert()
     sOff = pygame.image.load("./utilsStatics/soundOff.png").convert()
+
     sO.set_colorkey((255,255,255))
     sOff.set_colorkey((255,255,255))
 
     while mainrun == True:      
         mx, my = pygame.mouse.get_pos()
  
-        button_game = pygame.Rect(WIDTH//2.5, 325, 300, 80)
-        button_instructions = pygame.Rect(WIDTH//2.5, 435, 300, 80)
-        button_credits = pygame.Rect(WIDTH//2.5, 550, 300, 80)
+        button_game = pygame.Rect(WIDTH//2.6, 345, 300, 80)
+        button_instructions = pygame.Rect(WIDTH//2.6, 465, 300, 80)
+        button_credits = pygame.Rect(70, 350, 200, 300)
         button_lenguage = pygame.Rect(20, 40, 70,50)
         button_music = pygame.Rect(1160, 40, 70,50)
         mensaje = pygame.image.load("./utilsStatics/mensaje.png")
@@ -66,7 +72,7 @@ def main_menu(j_contador):
                     pantalla(screen, mensaje2, mainClock)
                 elif lg == False:
                     pantalla(screen, mensaje, mainClock)
-                levelsMenu(screen, select_menu, mainClock, recolect_trash,damage_sound,win, go,lg, select_menu,cc ,cm,m,music,mainrun,j_contador)
+                levelsMenu(screen, select_menu, mainClock, recolect_trash,damage_sound,win, go,lg, select_menu,cc ,cm,m,music,mainrun,j_contador,audioM,audioP,audioV,audioA)
         if button_instructions.collidepoint((mx, my)):
             if click:
                 select_menu.play()
@@ -81,7 +87,8 @@ def main_menu(j_contador):
                     lg = False
         if button_credits.collidepoint((mx,my)):
             if click:
-                credits(screen  , mainClock,lg,j_contador,music,m)
+                select_menu.play()
+                credits(screen  , mainClock,lg,j_contador,music,m,select_menu,audioM,audioP,audioV,audioA)
         if button_music.collidepoint((mx,my)):
             if click:
                 cm = cm + 1
@@ -107,9 +114,10 @@ def main_menu(j_contador):
                     click = True
 
         screen.blit(bg, [0,0])
-        screen.blit(btn_jugar, [WIDTH//2.5, 325])
-        screen.blit(btn_ajustes, [WIDTH//2.5, 435])
+        screen.blit(btn_jugar, [WIDTH//2.6, 345])
+        screen.blit(btn_ajustes, [WIDTH//2.6, 465])
         screen.blit(m_f, [20, 40])
+        pygame.draw.rect(screen,(255,255,255), button_credits)
         
         if cm % 2 != 0:
             screen.blit(sO, [1160,40])
@@ -118,8 +126,8 @@ def main_menu(j_contador):
 
         
         if lg == True:
-            screen.blit(btn_play, [WIDTH//2.5, 325])
-            screen.blit(btn_settings, [WIDTH//2.5, 435])
+            screen.blit(btn_play, [WIDTH//2.6, 345])
+            screen.blit(btn_settings, [WIDTH//2.6, 465])
             screen.blit(i_f, [20, 40])
 
         pygame.display.update()

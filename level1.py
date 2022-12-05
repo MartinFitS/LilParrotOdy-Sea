@@ -174,7 +174,7 @@ def level1(screen, font, mainClock,recolect_trash,damageSound,win,go,lg,menu_sou
                 pantalla(screen, w_sd , mainClock)
             if lg == False:
                 pantalla(screen, g_sd , mainClock)
-            level2(screen,pygame.font.SysFont(None, 30) ,mainClock,recolect_trash, damageSound,win,go,lg, menu_sound, cc,cm,m,music)
+            level2(screen,pygame.font.SysFont(None, 30) ,mainClock,recolect_trash, damageSound,win,go,lg, menu_sound, cc,cm,m,music,j_contador)
             
             
         screen.blit(image, [0,0])

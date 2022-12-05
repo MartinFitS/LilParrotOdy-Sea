@@ -7,7 +7,7 @@ from BlueCrabs import BlueCrabs
 from utils import draw_shield_bar , draw_text,pantalla,youLooseLvl3,pause
 from credits import credits
 
-def level3(screen, font, mainClock,recolect_trash,damageSound,win,go,lg,select_menu,cc,cm,m,music,mainrun,j_contador):
+def level3(screen, font, mainClock,recolect_trash,damageSound,win,go,lg,select_menu,cc,cm,m,music,j_contador,audioM,audioP,audioV,audioA):
     g_fd = pygame.image.load("./utilsStatics/muelle1.png").convert()
     g_sd = pygame.image.load("./utilsStatics/muelle2.png").convert()
 
@@ -16,7 +16,6 @@ def level3(screen, font, mainClock,recolect_trash,damageSound,win,go,lg,select_m
 
     consejoLv3 = pygame.image.load("./consejos/consejo lv3.png").convert()
     adviceLv3 = pygame.image.load("./consejos/advice lv3.png").convert()
-    mainrun = mainrun
 
     running = True
     game_over  = True
@@ -143,13 +142,10 @@ def level3(screen, font, mainClock,recolect_trash,damageSound,win,go,lg,select_m
                 pantalla(screen, w_sd , mainClock)
                 credits(screen, mainClock, lg,running,j_contador,music,m)
                 running = False
-                # from main import main_menu
             if lg == False:
                 pantalla(screen, g_sd , mainClock)
-                credits(screen, mainClock, lg,j_contador,music,m)
-                mainrun = False
-                # from main import main_menu
-                # main_menu()
+                credits(screen, mainClock, lg,j_contador,music,m,select_menu,audioM,audioP,audioV,audioA)
+                running =False
 
             
             
