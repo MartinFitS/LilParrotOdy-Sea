@@ -114,17 +114,17 @@ class Player(pygame.sprite.Sprite):
 
         keystate = pygame.key.get_pressed()
     
-        if keystate[pygame.K_LEFT]:  
+        if keystate[pygame.K_a]:  
             self.movingLeft()
             self.speed_x = -3
-        if keystate[pygame.K_RIGHT]:
+        if keystate[pygame.K_d]:
             self.speed_x = 3
             self.moving()
             
-        if keystate[pygame.K_UP]:
+        if keystate[pygame.K_w]:
             self.speed_y = -3
             self.moving()
-        if keystate[pygame.K_DOWN]:
+        if keystate[pygame.K_s]:
             self.speed_y = 3
             self.moving()
 

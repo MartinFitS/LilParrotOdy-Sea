@@ -2,11 +2,17 @@ import pygame, sys
 from utils import draw_text
 from pygame.locals import *
 
-def instructionsOfGame(screen, font ,mainClock):
+def instructionsOfGame(screen, font ,mainClock,lg):
     bg = pygame.image.load("./utilsStatics/controles.jpg")
+    controlsBg = pygame.image.load("./utilsStatics/controls.png").convert()
+
     running = True
     while running:
-        screen.blit(bg, [0,0])
+
+        if lg == True: 
+            screen.blit(controlsBg, [0,0])
+        if lg == False:
+            screen.blit(bg, [0,0])
         
         for event in pygame.event.get():
             if event.type == QUIT:

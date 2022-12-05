@@ -8,7 +8,8 @@ from pygame.locals import *
 from levels import levelsMenu
 from instructions import instructionsOfGame
 from credits import credits
-from utils import musicFunction 
+from utils import musicFunction,pantalla
+
 pygame.init()
 pygame.mixer.init()
 pygame.display.set_caption('Lil Parrot Odysea')
@@ -23,16 +24,18 @@ damage_sound = pygame.mixer.Sound("./sounds/damageSound.wav")
 win = pygame.mixer.Sound("./sounds/winlvl.wav")
 go = pygame.mixer.Sound("./sounds/gameOver.wav")
 music = pygame.mixer.Sound("./sounds/mfdv.mp3")
-music.play(loops=-1)
 click = False
- 
-def main_menu():
+j_contador = 0
+
+def main_menu(j_contador):
     global click
-    running = True
+    mainrun = True
     cc = 1
     lg = False
     cm = 1
     m = False
+    mm = True
+
     bg = pygame.image.load("./bg.png").convert()
     btn_jugar = pygame.image.load("./botonesMenu/JUGAR.png").convert()
     btn_play = pygame.image.load("./utilsStatics/PLAY.png").convert()
@@ -45,8 +48,7 @@ def main_menu():
     sO.set_colorkey((255,255,255))
     sOff.set_colorkey((255,255,255))
 
-    while running == True:      
-      
+    while mainrun == True:      
         mx, my = pygame.mouse.get_pos()
  
         button_game = pygame.Rect(WIDTH//2.5, 325, 300, 80)
@@ -54,15 +56,21 @@ def main_menu():
         button_credits = pygame.Rect(WIDTH//2.5, 550, 300, 80)
         button_lenguage = pygame.Rect(20, 40, 70,50)
         button_music = pygame.Rect(1160, 40, 70,50)
+        mensaje = pygame.image.load("./utilsStatics/mensaje.png")
+        mensaje2 = pygame.image.load("./utilsStatics/mensaje2.png")
         
         if button_game.collidepoint((mx, my)):
             if click:
                 select_menu.play()
-                levelsMenu(screen, select_menu, mainClock, recolect_trash,damage_sound,win, go,lg, select_menu,cc ,cm,m,music)
+                if lg == True:
+                    pantalla(screen, mensaje2, mainClock)
+                elif lg == False:
+                    pantalla(screen, mensaje, mainClock)
+                levelsMenu(screen, select_menu, mainClock, recolect_trash,damage_sound,win, go,lg, select_menu,cc ,cm,m,music,mainrun,j_contador)
         if button_instructions.collidepoint((mx, my)):
             if click:
                 select_menu.play()
-                instructionsOfGame(screen , font , mainClock)
+                instructionsOfGame(screen , font , mainClock,lg)
         if button_lenguage.collidepoint((mx,my)):
             if click:
                 select_menu.play()
@@ -73,12 +81,15 @@ def main_menu():
                     lg = False
         if button_credits.collidepoint((mx,my)):
             if click:
-                credits(screen , font , mainClock)
+                credits(screen  , mainClock,lg,j_contador,music,m)
         if button_music.collidepoint((mx,my)):
             if click:
                 cm = cm + 1
                 musicFunction(cm,music)
-    
+
+        if mm == True:
+            music.play(loops =-1)
+            mm = False
         click = False
         
         for event in pygame.event.get():
@@ -113,4 +124,5 @@ def main_menu():
 
         pygame.display.update()
         mainClock.tick(60)
-main_menu()
+
+main_menu(j_contador)

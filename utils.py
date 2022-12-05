@@ -28,7 +28,7 @@ def musicFunction(cm,music):
 
 click = False
 
-def pause(running,screen,menu_sound,  lg,cc,cm,m,music):
+def pause(running,screen,menu_sound,  lg,cc,cm,m,music,j_contador):
     global click
     paused = True
     cc = cc
@@ -61,10 +61,10 @@ def pause(running,screen,menu_sound,  lg,cc,cm,m,music):
 
         if button_Home.collidepoint((mx,my)):
             if click:
-                menu_sound.play()
+                music.stop()
                 running = False
                 from main import main_menu
-                main_menu()
+                main_menu(j_contador)
         if button_Lenguaje.collidepoint((mx,my)):
             if click:
                 cc = cc + 1

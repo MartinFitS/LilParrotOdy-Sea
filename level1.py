@@ -8,7 +8,7 @@ from utils import pantalla, draw_shield_bar , draw_text,youLooseLvl1,pause
 
 
 
-def level1(screen, font, mainClock,recolect_trash,damageSound,win,go,lg,menu_sound,cc,cm,m,music):
+def level1(screen, font, mainClock,recolect_trash,damageSound,win,go,lg,menu_sound,cc,cm,m,music,j_contador):
     g_fd = pygame.image.load("./utilsStatics/playa1.png").convert()
     g_sd = pygame.image.load("./utilsStatics/playa2.png").convert()
 
@@ -83,7 +83,7 @@ def level1(screen, font, mainClock,recolect_trash,damageSound,win,go,lg,menu_sou
                 running = False
             elif event.type == KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
-                    pause(running,screen,menu_sound, lg,cc,cm,m,music)
+                    pause(running,screen,menu_sound, lg,cc,cm,m,music,j_contador)
             
 
         all_sprites.update()
