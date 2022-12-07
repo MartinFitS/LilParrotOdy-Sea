@@ -8,7 +8,7 @@ from utils import pantalla, draw_shield_bar , draw_text,youLooseLvl1,pause
 
 
 
-def level1(screen, font, mainClock,recolect_trash,damageSound,win,go,lg,menu_sound,cc,cm,m,music,j_contador):
+def level1(screen, font, mainClock,recolect_trash,damageSound,win,go,lg,menu_sound,cc,cm,m,music,j_contador,audioM,audioP,audioV,audioA):
     g_fd = pygame.image.load("./utilsStatics/playa1.png").convert()
     g_sd = pygame.image.load("./utilsStatics/playa2.png").convert()
 
@@ -174,7 +174,7 @@ def level1(screen, font, mainClock,recolect_trash,damageSound,win,go,lg,menu_sou
                 pantalla(screen, w_sd , mainClock)
             if lg == False:
                 pantalla(screen, g_sd , mainClock)
-            level2(screen,pygame.font.SysFont(None, 30) ,mainClock,recolect_trash, damageSound,win,go,lg, menu_sound, cc,cm,m,music,j_contador)
+            level2(screen,pygame.font.SysFont(None, 30) ,mainClock,recolect_trash, damageSound,win,go,lg, menu_sound, cc,cm,m,music,j_contador,audioM,audioP,audioV,audioA)
             
             
         screen.blit(image, [0,0])

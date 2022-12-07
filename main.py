@@ -64,6 +64,8 @@ def main_menu(j_contador):
         button_music = pygame.Rect(1160, 40, 70,50)
         mensaje = pygame.image.load("./utilsStatics/mensaje.png")
         mensaje2 = pygame.image.load("./utilsStatics/mensaje2.png")
+        creditsE = pygame.image.load("./utilsStatics/engCredits.png")
+        creditos = pygame.image.load("./utilsStatics/espCreditos.png")
         
         if button_game.collidepoint((mx, my)):
             if click:
@@ -117,7 +119,7 @@ def main_menu(j_contador):
         screen.blit(btn_jugar, [WIDTH//2.6, 345])
         screen.blit(btn_ajustes, [WIDTH//2.6, 465])
         screen.blit(m_f, [20, 40])
-        pygame.draw.rect(screen,(255,255,255), button_credits)
+        screen.blit(creditos, [70,350])
         
         if cm % 2 != 0:
             screen.blit(sO, [1160,40])
@@ -129,6 +131,7 @@ def main_menu(j_contador):
             screen.blit(btn_play, [WIDTH//2.6, 345])
             screen.blit(btn_settings, [WIDTH//2.6, 465])
             screen.blit(i_f, [20, 40])
+            screen.blit(creditsE, [70,350])
 
         pygame.display.update()
         mainClock.tick(60)

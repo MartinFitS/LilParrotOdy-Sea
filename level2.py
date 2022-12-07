@@ -7,7 +7,7 @@ from TrashLvl2 import LataLvl2
 from level3 import level3
 from utils import draw_shield_bar , pantalla,draw_text,youLooseLvl2,pause
 
-def level2(screen, font, mainClock,recolect_trash,damageSound,win,go,lg,select_menu,cc,cm,m,music,j_contador):
+def level2(screen, font, mainClock,recolect_trash,damageSound,win,go,lg,select_menu,cc,cm,m,music,j_contador,audioM,audioP,audioV,audioA):
     g_fd = pygame.image.load("./utilsStatics/debajodeloceano2.png").convert()
     g_sd = pygame.image.load("./utilsStatics/debajodeloceano.png").convert()
 
@@ -161,7 +161,7 @@ def level2(screen, font, mainClock,recolect_trash,damageSound,win,go,lg,select_m
                 pantalla(screen, g_sd , mainClock)
             if lg == True:
                 pantalla(screen, w_sd , mainClock)
-            level3(screen, font, mainClock,recolect_trash,damageSound,win,go,lg,select_menu,cc,cm,m,music,j_contador)
+            level3(screen, font, mainClock,recolect_trash,damageSound,win,go,lg,select_menu,cc,cm,m,music,j_contador,audioM,audioP,audioV,audioA)
 
         
 
@@ -169,14 +169,14 @@ def level2(screen, font, mainClock,recolect_trash,damageSound,win,go,lg,select_m
         all_sprites.draw(screen)
 
         if lg == False:
-            draw_text('Puntaje: ', font, (255, 255, 255), screen, 1280//2-50, 10)
-            draw_text(str(score), font, (255, 255, 255), screen,  1280//2+50, 10)
-            draw_text('Barra de vida: ', font, (255, 255, 255), screen, 10, 10)
+            draw_text('Puntaje: ', font, (0, 0, 0), screen, 1280//2-50, 10)
+            draw_text(str(score), font, (0, 0, 0), screen,  1280//2+50, 10)
+            draw_text('Barra de vida: ', font, (0, 0, 0), screen, 10, 10)
             draw_shield_bar(screen, 160,15, player.lifes)
         if lg == True:
-            draw_text('Score: ', font, (255, 255, 255), screen, 1280//2-50, 10)
-            draw_text(str(score), font, (255, 255, 255), screen,  1280//2+50, 10)
-            draw_text('Life: ', font, (255, 255, 255), screen, 10, 10)
+            draw_text('Score: ', font, (0, 0, 0), screen, 1280//2-50, 10)
+            draw_text(str(score), font, (0, 0, 0), screen,  1280//2+50, 10)
+            draw_text('Life: ', font, (0, 0, 0), screen, 10, 10)
             draw_shield_bar(screen, 160,15, player.lifes)
 
         pygame.display.update()
