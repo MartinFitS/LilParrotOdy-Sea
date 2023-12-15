@@ -10,9 +10,9 @@ Join our friend LilParrot on an exciting adventure to collect trash and keep our
 
 ![Main Screen](/imagenesMD/MAIN.jpg)
 
-![Level 1](./imagenesMD/lv1.jpg)
+![Level 1](./imagenesMD/lvl1.jpg)
 
-![Level 2](./imagenesMD/lv2.jpg)
+![Level 2](./imagenesMD/lvl2.jpg)
 
 ![Level 3](./imagenesMD/lv3.jpg)
 
@@ -39,3 +39,6 @@ Contributions are welcome! If you'd like to contribute to the development of the
 
 - **@MartinFitS**
 - **@arielrosasc**
+- **@gasperro**
+- **@FranciscoRodriguez**
+- **@AxelSandoval**
