@@ -8,10 +8,34 @@ Join our friend LilParrot on an exciting adventure to collect trash and keep our
 
 ## ScreenShoots
 
-![Main Screen]("./imagenesMD/MAIN.jpg")
+![Main Screen](/imagenesMD/MAIN.jpg)
 
-![Level 1]("./imagenesMD/lv1.jpg")
+![Level 1](./imagenesMD/lv1.jpg)
 
-![Level 2]("./imagenesMD/lv2.jpg")
+![Level 2](./imagenesMD/lv2.jpg)
 
-![Level 3]("./imagenesMD/lv3.jpg")
+![Level 3](./imagenesMD/lv3.jpg)
+
+## Key Features
+
+- **Educational Adventure:** Lil Parrot Ody'Sea offers a fun and educational experience for children, promoting environmental awareness from an early age.
+
+- **Trash Collection:** Help LilParrot collect trash on the beach and learn about the importance of keeping our oceans clean.
+
+## Installation
+
+Follow these steps to install and run the game on your local machine:
+
+1. Clone this repository: `https://github.com/MartinFitS/LilParrotOdy-Sea.git`
+2. Navigate to the game directory: `cd Lil-Parrot-OdySea`
+3. Install dependencies: `pip install -r requirements.txt`
+4. Run the game: `python main.py`
+
+## Contributions
+
+Contributions are welcome! If you'd like to contribute to the development of the game or report issues, follow the contribution guidelines in [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Contributors
+
+- **@MartinFitS**
+- **@arielrosasc**
